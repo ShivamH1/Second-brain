@@ -1,4 +1,3 @@
-import { purple } from '@mui/material/colors';
 
 /** @type {import('tailwindcss').Config} */
 export default {
