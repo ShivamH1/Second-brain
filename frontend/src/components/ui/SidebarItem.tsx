@@ -1,11 +1,11 @@
 import React from 'react'
 
-function Card() {
+function SidebarItem() {
   return (
     <div>
-      Card
+      
     </div>
   )
 }
 
-export default Card
+export default SidebarItem
