@@ -1,16 +1,19 @@
 ### Learning from projects:
 
-## Mistake I made - 
+## Mistake I made -
+
 - ### I was trying to hit the url of signup with content-type = 'text/plain' that's the reason my data was not stored in db. The content-type should be 'application/json' as the server is expecting a JSON payload and 'text/plain' is for plain text data.
 
 - ### Populate method of mongoose: usage of references (foreign keys)
-The populate method of mongoose is used to get the data from another collection.
+  The populate method of mongoose is used to get the data from another collection.
+
 ```
 For example, if we have a user collection and a post collection and we want to get all the posts of a user, we can use the populate method to get the posts of the user.
 
 const user = await User.findOne({name: 'John Doe'}).populate('posts');
 console.log(user.posts); // [Post, Post, Post]
 ```
+
 In the above example, the user.posts is an array of Post documents, which are the posts that belong to the user with name 'John Doe'.
 
 ## Why circular imports are bad in Node.js:
@@ -32,12 +35,14 @@ To avoid circular imports, you should structure your code so that each module is
 .d.ts files, also known as TypeScript declaration files, are used to provide type information about a JavaScript library or module. These files allow TypeScript to understand the types and structures of the existing JavaScript code without requiring changes to the JavaScript code itself. They serve as a bridge between JavaScript and TypeScript, enabling developers to use type-checking features and IDE auto-completion for JavaScript libraries within TypeScript projects.
 
 Key Points about .d.ts files:
+
 - They contain only type declarations and no executable code.
 - They describe the shape of an object, what methods it has, and what types those methods accept and return.
 - They are particularly useful for third-party libraries that do not have TypeScript support.
 - With .d.ts files, TypeScript can verify whether the code using those libraries is type-safe, helping to catch errors during development.
 
 Example:
+
 ```typescript
 // Example of a .d.ts file
 declare module "my-library" {
@@ -47,6 +52,7 @@ declare module "my-library" {
 ```
 
 #### comment @ts-ignore - will ignore the type checks (but not the correct way)
+
 #### to include types in express install npm i @types/express package.
 
 ### What is Elastic Search?
@@ -54,6 +60,7 @@ declare module "my-library" {
 Elastic Search is a powerful search and analytics engine that allows users to easily search, analyze, and visualize large volumes of data in real-time. It is built on top of Apache Lucene, a high-performance search engine library. It stores data in a JSON document format and provides a simple, REST-based API for storing, searching, and retrieving data.
 
 Key Features of Elastic Search:
+
 - Scalability: Elastic Search is designed to scale horizontally, allowing it to handle large amounts of data and scale as needed.
 - Full-text search: Elastic Search provides robust full-text search capabilities, allowing users to search for specific words or phrases within their data.
 - Real-time analytics: Elastic Search supports real-time data aggregation and analysis, enabling users to gain insights from their data as it's generated.
@@ -63,10 +70,13 @@ Key Features of Elastic Search:
 Elastic Search is commonly used for search, logging, analytics, and other data-driven applications.
 
 ### Note (out of context) - (Embedding of data in ChatGPT, data converted to vector, when a query comes then query is converted to vectors and it checks stored and query vector to find closest one) => GPT is trained on vectors.
+
 ### Vector DB:
+
 A vector database is a type of NoSQL database that stores data as vectors instead of tables or documents. It is optimized for similarity searches and is often used for AI and machine learning applications.
 
 ### API Skeleton:
+
 - Use Zod to validate the request body for signup. Zod is not required for signin, but it can be useful for input validation.
 - Always hash the password before storing in the database.
 - Check if the user exists in the database.
@@ -79,8 +89,25 @@ A vector database is a type of NoSQL database that stores data as vectors instea
 A ReactElement is a fundamental building block in React applications. It is an object representation of a UI element that describes what should appear on the screen. ReactElements are immutable and are created using the `React.createElement()` method or JSX syntax. They are used by React to efficiently update and render the UI by comparing the current element tree with the previous one, a process known as reconciliation.
 
 Example:
+
 ```jsx
 const element = <h1>Hello, world!</h1>;
 // Equivalent to:
-const element = React.createElement('h1', null, 'Hello, world!');
+const element = React.createElement("h1", null, "Hello, world!");
+```
+
+### How do we embed youtube videos or twitter tweets into the DOM?
+We can embed youtube videos or twitter tweets into the DOM by using an iframe for youtube videos and a blockquote for twitter tweets. We need to replace the "watch" in the youtube link with "embed" and the "?v=" with "/" to get the correct link for the iframe. We also need to add a script tag in the html file to load the twitter widget.
+```
+<div>
+  {type === "youtube" && <iframe className="w-full" src={link.replace("watch", "embed").replace("?v=", "/")} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>}
+
+  {type === "twitter" && <blockquote className="twitter-tweet">
+  <a href={link.replace("x.com", "twitter.com")}></a>
+  </blockquote>}
+</div>
+
+//Add this script in html file
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+
 ```
