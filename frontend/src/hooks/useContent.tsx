@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { BACKEND_URL } from "../config";
 
 export function useContent() {
-    const [contents, setContents] = useState([]);
+    const [content, setContents] = useState([]);    
 
     function refresh() {
         axios.get(`${BACKEND_URL}/api/v1/content`, {
@@ -12,7 +12,7 @@ export function useContent() {
             }
         })
             .then((response) => {
-                setContents(response?.data?.content)
+                setContents(response?.data?.contents)
             })
     }
 
@@ -27,5 +27,5 @@ export function useContent() {
         }
     }, [])
 
-    return {contents, refresh};
+    return {content, refresh};
 }

@@ -11,11 +11,11 @@ import axios from "axios"
 
 export function Dashboard() {
   const [modalOpen, setModalOpen] = useState(false);
-  const {contents, refresh} = useContent();
+  const {content, refresh} = useContent();
 
   useEffect(() => {
     refresh();
-  }, [modalOpen])
+  }, [modalOpen])  
 
   return <div>
     <Sidebar />
@@ -41,7 +41,7 @@ export function Dashboard() {
       </div>
 
       <div className="flex gap-4 flex-wrap">
-        {contents.map(({type, link, title}) => <Card 
+        {content?.map(({type, link, title}) => <Card 
             type={type}
             link={link}
             title={title}
