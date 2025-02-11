@@ -13,7 +13,13 @@ const app = express();
 
 app.use(express.json());
 
-app.use(cors());
+const corsOptions = {
+  origin: 'https://second-brain-frontend-three.vercel.app', // allow only requests from this origin
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // allow only these methods
+  allowedHeaders: ['Content-Type', 'Authorization'], // allow only these headers
+};
+
+app.use(cors(corsOptions));
 
 app.post("/api/v1/signup", async (req, res) => {
   const signupSchema = z.object({
