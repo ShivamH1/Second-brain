@@ -13,7 +13,8 @@ export function useContent() {
         },
       })
       .then((response) => {
-        setContents(response?.data?.contents || []);
+        //@ts-ignore
+        setContents(response?.data?.contents);
       });
   }
 
