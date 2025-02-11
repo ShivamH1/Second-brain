@@ -24,6 +24,7 @@ export function SharedBrain() {
         const response = await axios.get(
           `${BACKEND_URL}/api/v1/brain/${hash}`
         );
+        //@ts-ignore
         setSharedContent(response?.data?.content);
         setLoading(false);
       } catch (err) {

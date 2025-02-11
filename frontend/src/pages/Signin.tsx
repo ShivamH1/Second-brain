@@ -18,6 +18,7 @@ export function Signin() {
             username,
             password
         })
+        //@ts-ignore
         const jwt = response?.data?.token;
         localStorage.setItem("token", jwt);
         navigate("/dashboard")
